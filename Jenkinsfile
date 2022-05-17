@@ -46,6 +46,13 @@ node () {
  		}		
 	}
 	
+	stage('Quality check') {
+	withSonarQubeEnv('Sonar') {
+		bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+		-Dsonar.projectKey=AppICMasmo"
+		}
+	}
+	
 	stage ('App-IC - Post build actions') {
 		step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'badr.nasslahsen@gmail.com', sendToIndividuals: false])
  
