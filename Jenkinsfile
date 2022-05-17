@@ -46,10 +46,9 @@ node () {
  		}		
 	}
 	
-	stage('Quality check') {
+	stage ('Quality check') {
 	withSonarQubeEnv('Sonar') {
-		bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-		-Dsonar.projectKey=AppICMasmo"
+		bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=AppICMasmo"
 		}
 	}
 	
